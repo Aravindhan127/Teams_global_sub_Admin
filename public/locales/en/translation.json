@@ -1,0 +1,92 @@
+{
+  "form": {
+    "email": {
+      "label": "Email Address",
+      "placeholder": "Enter Email here",
+      "error": {
+        "Email is required": "Email is required",
+        "Must be a valid email address": "Must be a valid email address"
+      }
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Enter Password here",
+      "error": {
+        "Password is required": "Password is required",
+        "Password must be min 8 characters, and have 1 Special Character, 1 Uppercase, 1 Number and 1 Lowercase": "Password must be min 8 characters, and have 1 Special Character, 1 Uppercase, 1 Number and 1 Lowercase"
+      }
+    },
+    "firstName": {
+      "label": "First Name",
+      "placeholder": "Enter First Name",
+      "error": {
+        "First name is required": "First name is required"
+      }
+    },
+    "lastName": {
+      "label": "Last Name",
+      "placeholder": "Enter Last Name",
+      "error": {
+        "Last name is required": "Last name is required"
+      }
+    },
+    "isBusiness": {
+      "label": "This is a Business Account."
+    },
+    "businessName": {
+      "label": "Name of Business",
+      "placeholder": "Enter Business Name",
+      "error": {
+        "Name of Business is required": "Name of Business is required"
+      }
+    },
+    "cityName": {
+      "label": "City Name",
+      "placeholder": "Enter City",
+      "error": {
+        "City Name is required": "City Name is required"
+      }
+    },
+    "country": {
+      "label": "Country",
+      "placeholder": "Enter Country",
+      "error": {
+        "Country is required": "Country is required"
+      }
+    },
+    "isUserConsent": {
+      "label1": "I certify that I have the legal authority to create this account and engage on this site as Plan Administrator on behalf of the above stated business. I understand that creating this account, my first name and last name represent my electronic signature.",
+      "label2": "I accept these terms and the conditions of the community health plan as outlined in the accompanying document.",
+      "error": {
+        "User Consent is required": "User Consent is required"
+      }
+    },
+    "privacyDialogText": {
+      "value1": " By submitting this application form, I hereby affirm and declare that all information provided herein is complete, true, and accurate to the best of my knowledge and belief. I understand that this information is critical for the assessment and provision of health coverage under the community health plan, which is subject to the laws and regulations applicable within the designated service regions in Africa",
+      "value2": "I acknowledge that this health coverage is contingent upon the truthfulness of the information supplied, and any misrepresentation, omission, or falsification of information may result in denial of coverage, withdrawal of coverage at any point, or other legal actions as permitted under the governing laws",
+      "value3": " Example: If an applicant indicates 'No' to the question 'Is the beneficiary a smoker?'' but it is later discovered that the beneficiary has a history of smoking, particularly in the event of a cancer diagnosis linked to smoking habits, the community health plan may deny coverage for treatments related to such conditions.",
+      "value4": "Furthermore, I consent to the community health plan conducting necessary verifications and investigations to validate the information provided. If any information is found to be incorrect or misleading after coverage has been granted, I understand that the coverage may be retroactively denied or canceled, and any claims made may be subject to denial or recovery of costs incurred by the community health plan.",
+      "value5": "I grant full authorization to the community health plan administrators to request and obtain information pertinent to this application and the ongoing evaluation of the beneficiary's coverage eligibility. This may include, but is not limited to, medical records, prescription records, and other health-related information from any hospital, clinic, pharmacy, or other medical service provider.",
+      "value6": "I commit to promptly inform the community health plan of any changes in the beneficiary's health status or other relevant information that could impact coverage under the community health plan.",
+      "value7": "The undersigned acknowledges that they are completing this form on behalf of the named beneficiary who resides in Africa and that they have the authority to provide this information and consent to its use for the purposes of health coverage.",
+      "value8": "I accept these terms and the conditions of the community health plan as outlined in the accompanying document.",
+      "heading": "Declaration and Consent",
+      "error": {
+        "You must agree to the terms and privacy policy to continue.": "You must agree to the terms and privacy policy to continue."
+      }
+    }
+  },
+  "Sign In": "Sign In",
+  "Sign Up": "Sign Up",
+  "Enter your details to continue.": "Enter your details to continue.",
+  "passwordTextfield": {
+    "label": "Password",
+    "placeholder": "Enter Password here"
+  },
+  "Forgot Password?": "Forgot Password?",
+  "Don't have an account?": "Don't have an account?",
+  "Create Account": "Create Account",
+  "Enter necessary details to create your account.": "Enter necessary details to create your account.",
+  "Continue": "Continue",
+  "Already have an account?":"Already have an account?"
+}

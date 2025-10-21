@@ -1,0 +1,33 @@
+html,
+body {
+  margin: 0;
+}
+// CSS for DataGrid ONCell Click Started
+.cursor-pointer {
+  cursor: pointer;
+}
+// .blog_____content > p {
+//   color: #676767;
+//   font-size: 16px;
+//   font-style: normal;
+//   font-weight: 300;
+//   line-height: 28px;
+// }
+
+.expandable-quill-editor {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: height 0.2s;
+}
+
+.ql-container {
+  border: none;
+}
+
+.ql-editor {
+  min-height: 300px;
+  padding: 10px;
+  outline: none;
+}

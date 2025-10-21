@@ -1,0 +1,91 @@
+{
+  "name": "Lynksorg-Sub-Admin-panel-web",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@casl/ability": "^6.5.0",
+    "@casl/react": "^3.1.0",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@hookform/resolvers": "^3.3.3",
+    "@mui/icons-material": "^5.15.2",
+    "@mui/lab": "^5.0.0-alpha.158",
+    "@mui/material": "^5.15.2",
+    "@mui/x-data-grid": "^6.19.1",
+    "@react-google-maps/api": "^2.19.3",
+    "@reduxjs/toolkit": "^2.0.1",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@vis.gl/react-google-maps": "^1.1.0",
+    "axios": "^1.6.2",
+    "chart.js": "^4.4.3",
+    "cleave.js": "^1.6.0",
+    "clipboard-copy": "^4.0.1",
+    "i18next": "^23.7.11",
+    "i18next-browser-languagedetector": "^7.2.0",
+    "i18next-http-backend": "^2.4.2",
+    "mdi-material-ui": "^7.7.0",
+    "moment": "^2.30.1",
+    "mui-one-time-password-input": "^2.0.2",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-datepicker": "^6.9.0",
+    "react-dom": "^18.2.0",
+    "react-dropzone": "^14.3.5",
+    "react-google-places-autocomplete": "^4.0.1",
+    "react-hook-form": "^7.49.2",
+    "react-hot-toast": "^2.4.1",
+    "react-i18next": "^14.0.0",
+    "react-icons": "^5.0.1",
+    "react-perfect-scrollbar": "^1.5.8",
+    "react-phone-input-2": "^2.15.1",
+    "react-popper": "^2.3.0",
+    "react-qr-code": "^2.0.15",
+    "react-quill": "^2.0.0",
+    "react-redux": "^9.0.4",
+    "react-router-dom": "^6.21.1",
+    "react-scripts": "5.0.1",
+    "react-switch": "^7.1.0",
+    "recharts": "^2.15.2",
+    "redux": "^5.0.1",
+    "sass": "^1.93.2",
+    "stylis-plugin-rtl": "^2.1.1",
+    "swiper": "^11.2.4",
+    "web-vitals": "^2.1.4",
+    "yup": "^1.3.3"
+  },
+  "scripts": {
+    "clean": "rimraf build",
+    "dev": "react-scripts start",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build:test": "react-scripts build",
+    "uploadToS3:test": "aws s3 sync build/ s3://hiqlynks-sub-admin-panel",
+    "invalidateIndex:test": "aws cloudfront create-invalidation --distribution-id EYG5NDTPO14L3 --paths /index.html",
+    "deploy:test": "npm run clean && npm run build:test && npm run uploadToS3:test && npm run invalidateIndex:test"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+  }
+}

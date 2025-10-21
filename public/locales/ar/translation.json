@@ -1,0 +1,92 @@
+{
+  "form": {
+    "email": {
+      "label": "__TBT__",
+      "placeholder": "__TBT__",
+      "error": {
+        "Email is required": "__TBT__",
+        "Must be a valid email address": "__TBT__"
+      }
+    },
+    "password": {
+      "label": "__TBT__",
+      "placeholder": "__TBT__",
+      "error": {
+        "Password is required": "__TBT__",
+        "Password must be min 8 characters, and have 1 Special Character, 1 Uppercase, 1 Number and 1 Lowercase": "__TBT__"
+      }
+    },
+    "firstName": {
+      "label": "__TBT__",
+      "placeholder": "__TBT__",
+      "error": {
+        "First name is required": "__TBT__"
+      }
+    },
+    "lastName": {
+      "label": "__TBT__",
+      "placeholder": "__TBT__",
+      "error": {
+        "Last name is required": "__TBT__"
+      }
+    },
+    "isBusiness": {
+      "label": "__TBT__"
+    },
+    "businessName": {
+      "label": "__TBT__",
+      "placeholder": "__TBT__",
+      "error": {
+        "Name of Business is required": "__TBT__"
+      }
+    },
+    "cityName": {
+      "label": "__TBT__",
+      "placeholder": "__TBT__",
+      "error": {
+        "City Name is required": "__TBT__"
+      }
+    },
+    "country": {
+      "label": "__TBT__",
+      "placeholder": "__TBT__",
+      "error": {
+        "Country is required": "__TBT__"
+      }
+    },
+    "isUserConsent": {
+      "label1": "__TBT__",
+      "label2": "__TBT__",
+      "error": {
+        "User Consent is required": "__TBT__"
+      }
+    },
+    "privacyDialogText": {
+      "value1": "__TBT__",
+      "value2": "__TBT__",
+      "value3": "__TBT__",
+      "value4": "__TBT__",
+      "value5": "__TBT__",
+      "value6": "__TBT__",
+      "value7": "__TBT__",
+      "value8": "__TBT__",
+      "heading": "__TBT__",
+      "error": {
+        "You must agree to the terms and privacy policy to continue.": "__TBT__"
+      }
+    }
+  },
+  "Sign In": "__TBT__",
+  "Sign Up": "__TBT__",
+  "Enter your details to continue.": "__TBT__",
+  "passwordTextfield": {
+    "label": "__TBT__",
+    "placeholder": "__TBT__"
+  },
+  "Forgot Password?": "__TBT__",
+  "Don't have an account?": "__TBT__",
+  "Create Account": "__TBT__",
+  "Enter necessary details to create your account.": "__TBT__",
+  "Continue": "__TBT__",
+  "Already have an account?": "__TBT__"
+}
