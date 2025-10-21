@@ -123,16 +123,35 @@ const CustomDataGrid = ({
                 loadingOverlay: CustomLoadingOverlay,
                 noRowsOverlay: CustomNoRowsOverlay,
             }}
-            sx={{
-                '--DataGrid-overlayHeight': '500px',
-                '.MuiDataGrid-iconButtonContainer': {
-                    visibility: 'visible'
-                },
-                '.MuiDataGrid-sortIcon': {
-                    opacity: 'inherit !important',
-                    color: '#ffffffff'
-                },
-            }}
+                      sx={{
+  '--DataGrid-overlayHeight': '500px',
+
+  // 🔹 Make sure all icons (sort, filter, 3-dot menu) are visible and white
+  '.MuiDataGrid-iconButtonContainer': {
+    visibility: 'visible',
+    color: '#ffffff',
+  },
+  '.MuiDataGrid-menuIconButton': {
+    color: '#ffffff',
+  },
+
+  // 🔹 On hover — keep them white too
+  '.MuiDataGrid-iconButtonContainer:hover, .MuiDataGrid-menuIconButton:hover': {
+    color: '#ffffff',
+  },
+
+  // 🔹 Sort icon — already white
+  '.MuiDataGrid-sortIcon': {
+    opacity: 'inherit !important',
+    color: '#ffffff',
+  },
+
+  // Optional — keep header text readable if background is dark
+  '.MuiDataGrid-columnHeaderTitle': {
+    color: '#ffffff',
+    fontWeight: 600,
+  },
+}}
             onCellClick={({ field, row }) => handleCellClick && handleCellClick({ field, row })}
             getCellClassName={params => {
                 if (handleCellClick && !['Actions'].includes(params.field)) return 'cursor-pointer'

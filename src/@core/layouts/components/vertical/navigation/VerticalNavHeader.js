@@ -82,10 +82,10 @@ const VerticalNavHeader = props => {
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <Box
                 sx={{
-                  height: '60px',
-                  maxHeight: '60px',
+                  height: '140px',
+                  maxHeight: '120px',
                   mt: 2,
-                  mb: 1
+                  mb: 5
                 }}
               >
                 <img
@@ -95,7 +95,7 @@ const VerticalNavHeader = props => {
                     e.target.src = Logo
                   }}
                   style={{
-                    width: '120px',
+                    width: '100%',
                     height: '100%',
                     objectFit: 'contain'
                   }}
@@ -110,7 +110,7 @@ const VerticalNavHeader = props => {
                   mb: 2
                 }}
               >
-                <Typography variant='h6' fontWeight={600} color={'#333333'} fontSize={'1rem'}>
+                <Typography variant='h6' fontWeight={600} color={'#121280'} fontSize={'1rem'}>
                   {user?.orgDetails?.orgName || 'OUR TEAMS GLOBAL'}
                 </Typography>
               </Box>

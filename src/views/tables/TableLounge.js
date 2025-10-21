@@ -117,7 +117,7 @@ function TableLounge({
                 headerName: 'SNo',
                 renderHeader: () => (
                     <Box display="flex" alignItems="center" gap={1} onClick={() => handleSortClick('loungeId')} sx={{ cursor: 'pointer' }}>
-                        <Typography sx={{ fontSize: "15px !important", fontWeight: 500, color: "#000" }}>SNo</Typography>
+                        <Typography sx={{ fontSize: "15px !important", fontWeight: 550, color: "#ffffffff" }}>SNo</Typography>
                         {renderSortIcon('loungeId')}
                     </Box>
                 ),
@@ -274,7 +274,7 @@ function TableLounge({
                         headerName: 'Traction of Comments',
                         renderHeader: () => (
                             <Box display="flex" alignItems="center" gap={1} onClick={() => handleSortClick('noOfComments')} sx={{ cursor: 'pointer' }}>
-                                <Typography sx={{ fontSize: "15px !important", fontWeight: 500, color: "#000" }}>Traction of Comments</Typography>
+                                <Typography sx={{ fontSize: "15px !important", fontWeight: 550, color: "#ffffffff"}}>Traction of Comments</Typography>
                                 {renderSortIcon('noOfComments')}
                             </Box>
                         ),
@@ -311,7 +311,7 @@ function TableLounge({
                 headerName: 'Status',
                 renderHeader: () => (
                     <Box display="flex" alignItems="center" gap={1} onClick={() => handleSortClick('status')} sx={{ cursor: 'pointer' }}>
-                        <Typography sx={{ fontSize: "15px !important", fontWeight: 500, lineHeight: "23px !important", color: "#000000" }}>Status</Typography>
+                        <Typography sx={{ fontSize: "15px !important", fontWeight: 550, lineHeight: "23px !important", color: "#ffffffff"}}>Status</Typography>
                         {renderSortIcon('status')}
                     </Box>
                 ),
@@ -406,7 +406,7 @@ function TableLounge({
                 headerName: 'Created At',
                 renderHeader: () => (
                     <Box display="flex" alignItems="center" gap={1} onClick={() => handleSortClick('createdAt')} sx={{ cursor: 'pointer' }}>
-                        <Typography sx={{ fontSize: "15px !important", fontWeight: 500, color: "#000" }}>Created At</Typography>
+                        <Typography sx={{ fontSize: "15px !important", fontWeight: 550, color: "#ffffffff"}}>Created At</Typography>
                         {renderSortIcon('createdAt')}
                     </Box>
                 ),
