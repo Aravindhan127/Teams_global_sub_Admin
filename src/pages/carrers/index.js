@@ -158,7 +158,7 @@ import React from 'react';
 import ComingSoon from '../../views/common/ComingSoon';
 
 const Careers = () => {
-  return <ComingSoon title="Careers" />;
+  return <ComingSoon title="Jobopedia" />;
 };
 
 export default Careers; 

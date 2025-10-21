@@ -38,7 +38,7 @@ const pathNameMap = {
   '/mentorship-request': 'Mentorship Request',
   '/new-campaign': 'New Campaign',
   '/campaign-management': 'Campaign Management',
-  '/carrers': 'Careers',
+  '/carrers': 'Jobopedia',
   '/gallery': 'Gallery',
   '/archives': 'Archives',
   '/service-request': 'Service Request',
@@ -57,7 +57,7 @@ const pathNameMap = {
   '/contact-us': 'Contact Us',
   // Add more mappings as needed
   //org pages
-  '/organization-user': 'Organization Users'
+  '/organization-user': 'Members',
 }
 
 const AppBarContent = props => {

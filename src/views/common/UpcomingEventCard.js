@@ -1,7 +1,15 @@
 import React, { useState } from 'react'
-import { Box, Typography, IconButton, Paper, Stack, Avatar, Card, CardContent } from '@mui/material'
-import leftIcon from 'src/assets/images/leftIcon.svg'
-import rightIcon from 'src/assets/images/rightIcon.svg'
+import {
+  Box,
+  Typography,
+  IconButton,
+  Paper,
+  Stack,
+  Avatar,
+  Card,
+  CardContent
+} from '@mui/material'
+import { ArrowBackIos, ArrowForwardIos, MpRounded } from '@mui/icons-material'
 import moment from 'moment'
 import { useNavigate } from 'react-router-dom'
 
@@ -24,18 +32,17 @@ function getTwoWeeksDates(date) {
 }
 
 const UpcomingEventCard = ({ upcomingEventData }) => {
-  // Set current date
   const navigate = useNavigate()
   const currentDate = new Date()
   const [selectedDate, setSelectedDate] = useState(currentDate)
-  console.log('upcomingEventData', upcomingEventData)
-  // For week navigation, start from one week before current date
+
   const getStartOfTwoWeekView = date => {
     const startOfCurrentWeek = getStartOfWeek(date)
     const startOfPrevWeek = new Date(startOfCurrentWeek)
     startOfPrevWeek.setDate(startOfCurrentWeek.getDate() - 7)
     return startOfPrevWeek
   }
+
   const [weekStartDate, setWeekStartDate] = useState(getStartOfTwoWeekView(currentDate))
   const twoWeeksDates = getTwoWeeksDates(weekStartDate)
 
@@ -45,39 +52,72 @@ const UpcomingEventCard = ({ upcomingEventData }) => {
     setWeekStartDate(prev)
     setSelectedDate(new Date(prev))
   }
+
   const handleNextWeek = () => {
     const next = new Date(weekStartDate)
     next.setDate(next.getDate() + 14)
     setWeekStartDate(next)
     setSelectedDate(new Date(next))
   }
+
   const handleSelectDate = date => {
     setSelectedDate(date)
   }
 
   return (
-    <Card variant='outlined' sx={{ minHeight: '500px', bgcolor: '#FFEEFE', borderRadius: '20px' }}>
+    <Card variant='outlined' sx={{ minHeight: '500px', bgcolor: '#c2d9f8ff', borderRadius: '20px' }}>
       <CardContent>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
           <Typography variant='subtitle1' color='text.secondary' gutterBottom>
             {selectedDate.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
           </Typography>
-          <Box>
-            <IconButton size='small' onClick={handlePrevWeek}>
-              <img src={leftIcon} alt='Previous' style={{ width: '36px', height: '36px' }} />
-            </IconButton>
-            <IconButton size='small' onClick={handleNextWeek}>
-              <img src={rightIcon} alt='Next' style={{ width: '36px', height: '36px' }} />
-            </IconButton>
-          </Box>
+<Box sx={{ display: 'flex', gap: 1 }}>
+  <IconButton
+    size="small"
+    onClick={handlePrevWeek}
+    sx={{
+      backgroundColor: '#1e40af',
+      '&:hover': { backgroundColor: '#1e3a8a' },
+      color: 'white',
+      borderRadius: '8px',   // slightly rounded corners
+      width: 36,             // square-ish size
+      height: 36,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}
+  >
+    <ArrowBackIos fontSize="small" />
+  </IconButton>
+
+  <IconButton
+    size="small"
+    onClick={handleNextWeek}
+    sx={{
+      backgroundColor: '#1e40af',
+      '&:hover': { backgroundColor: '#1e3a8a' },
+      color: 'white',
+      borderRadius: '8px',
+      width: 36,
+      height: 36,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}
+  >
+    <ArrowForwardIos fontSize="small" />
+  </IconButton>
+</Box>
+
         </Box>
+
         <Box sx={{ display: 'flex' }}>
           <Typography variant='fm-h7' color={'#000000'}>
             {selectedDate.toDateString() === new Date().toDateString() ? 'Today' : daysShort[selectedDate.getDay()]}
           </Typography>
         </Box>
 
-        {/* Custom two-week-view calendar */}
+        {/* Two-week calendar */}
         <Box
           sx={{
             display: 'flex',
@@ -132,9 +172,7 @@ const UpcomingEventCard = ({ upcomingEventData }) => {
                     <Typography
                       variant='fm-p1'
                       fontWeight={isToday ? 700 : 400}
-                      color={
-                        isSelected ? '#ffffff' : date.getMonth() !== currentDate.getMonth() ? '#B0B0B0' : '#000000'
-                      }
+                      color={isSelected ? '#ffffff' : date.getMonth() !== currentDate.getMonth() ? '#B0B0B0' : '#000000'}
                     >
                       {date.getDate()}
                     </Typography>
@@ -144,6 +182,7 @@ const UpcomingEventCard = ({ upcomingEventData }) => {
             </Box>
           ))}
         </Box>
+
         {upcomingEventData && upcomingEventData.length > 0 && (
           <Box sx={{ display: 'flex', mt: 5 }}>
             <Typography variant='fm-h7' color={'#000000'}>
