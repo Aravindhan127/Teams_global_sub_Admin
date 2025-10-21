@@ -1,5 +1,5 @@
 // export const API_BASE_URL = "https://api.hiqlynks.com"
-export const API_BASE_URL = "http://192.168.1.7:4003"
+export const API_BASE_URL = "https://api.hiqlynks.com"
 export const MEDIA_URL = "https://d1hj3r7039erwq.cloudfront.net"
 export const ApiEndPoints = {
     AUTH: {
