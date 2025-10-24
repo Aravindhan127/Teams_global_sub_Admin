@@ -47,9 +47,11 @@ const ExactActivityFeed = () => {
         width: '100%',
         margin: '20px auto', 
         borderRadius: '12px',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        height: '35%'
       }}
     >
+ 
       {/* Header */}
       <Box sx={{ p: 2.5, borderBottom: '1px solid #e0e0e0', display: 'flex', justifyContent: 'space-between' }}>
         <Typography 
@@ -73,8 +75,17 @@ const ExactActivityFeed = () => {
           View All
         </Typography>
 
-      </Box>
+      </Box >
 
+  <Box sx={{
+    maxHeight: '82%',  // limit height
+    overflowY: 'auto',   // vertical scroll
+    overflowX: 'hidden', // optional
+    padding: '16px',
+    border: '1px solid #ccc',
+    borderRadius: '8px'
+  }}
+>
       {/* Activity Items */}
       {activityData.map((item, index) => (
         <Box key={index}>
@@ -123,6 +134,7 @@ const ExactActivityFeed = () => {
           )}
         </Box>
       ))}
+    </Box>
     </Paper>
   );
 };
