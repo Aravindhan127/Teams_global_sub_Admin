@@ -5,496 +5,674 @@ import { axiosInstance } from 'src/network/adapter';
 import { ApiEndPoints } from 'src/network/endpoints';
 import { toastError } from 'src/utils/utils';
 import { useAuth } from 'src/hooks/useAuth';
-import icon from "../../../src/assets/images/Icon.svg"
-import approved from "../../../src/assets/images/apporved.svg"
-import pending from "../../../src/assets/images/pending.svg"
-import rejected from "../../../src/assets/images/rejected.svg"
 import UpComingEventCard from 'src/views/common/UpcomingEventCard';
 import LoungeCard from 'src/views/common/LoungeCard';
 import UserApprovalCard from 'src/views/common/UserApprovalCard';
 import { DefaultPaginationSettings } from 'src/constants/general.const';
-import NotInterestedOutlinedIcon from '@mui/icons-material/NotInterestedOutlined';
-import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+
+import PeopleIcon from '@mui/icons-material/People';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
+import EmailIcon from '@mui/icons-material/Email';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import TrendingDownIcon from '@mui/icons-material/TrendingDown';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import CampaignIcon from '@mui/icons-material/Campaign';
+import EventIcon from '@mui/icons-material/Event';
+import ChatIcon from '@mui/icons-material/Chat';
+import ActivityFeed from 'src/views/common/RecentActivity';
+
 function DashboardPage() {
-    const collegeInitialData = [
-        // {
-        //     stats: {
-        //         pendingUserCount: 0,
-        //         rejectedUserCount: 0,
-        //         acceptedUserCount: 0,
-        //         studentUserCount: 0,
-        //         facultyUserCount: 0,
-        //         alumUserCount: 0,
-        //         // total: 0,
-        //     },
-        //     title: 'College Users',
-        //     link: '/college-user',
-        //     type: 'collegeUsers',
-        //     requiredPermission: 'collegeUser.list',
-        // },
-        {
-            stats: 0,
-            title: 'Student',
-            link: '/student-list',
-            type: 'studentUserCount',
-            pendingStats: 0,
-            rejectedStats: 0,
-            acceptedStats: 0,
-            pendingType: 'studentPendingUserCount',
-            acceptedType: 'studentAcceptedUserCount',
-            rejectedType: 'studentRejectedUserCount',
-            requiredPermission: 'collegeUser.list'
-        },
+  const collegeInitialData = [
+    {
+      stats: 0,
+      title: 'Student',
+      link: '/student-list',
+      type: 'studentUserCount',
+      pendingStats: 0,
+      rejectedStats: 0,
+      acceptedStats: 0,
+      pendingType: 'studentPendingUserCount',
+      acceptedType: 'studentAcceptedUserCount',
+      rejectedType: 'studentRejectedUserCount',
+      requiredPermission: 'collegeUser.list',
+      icon: PeopleIcon,
+      trend: 'up',
+      percentage: '12.5%',
+      vsText: 'vs last month'
+    },
+    {
+      stats: '0',
+      title: 'Alumni',
+      link: '/alumni',
+      type: 'alumUserCount',
+      pendingStats: 0,
+      rejectedStats: 0,
+      acceptedStats: 0,
+      pendingType: 'alumPendingUserCount',
+      acceptedType: 'alumAccpetedUserCount',
+      rejectedType: 'alumRejectedUserCount',
+      requiredPermission: 'collegeUser.list',
+      icon: PeopleIcon,
+      trend: 'up',
+      percentage: '12.5%',
+      vsText: 'vs last month'
+    },
+    {
+      stats: '0',
+      title: 'Faculty',
+      link: '/faculty',
+      type: 'facultyUserCount',
+      pendingStats: 0,
+      rejectedStats: 0,
+      acceptedStats: 0,
+      pendingType: 'facultyPendingUserCount',
+      acceptedType: 'facultyAcceptedUserCount',
+      rejectedType: 'facultyRejectedUserCount',
+      requiredPermission: 'collegeUser.list',
+      icon: PeopleIcon,
+      trend: 'up',
+      percentage: '12.5%',
+      vsText: 'vs last month'
+    },
+    {
+      stats: '0',
+      title: 'Lounge',
+      link: '/lounge',
+      type: 'loungeCount',
+      pendingStats: 0,
+      rejectedStats: 0,
+      acceptedStats: 0,
+      closedStats: 0,
+      pendingType: 'loungePendingUserCount',
+      acceptedType: 'loungeAcceptedUserCount',
+      rejectedType: 'loungeRejectedUserCount',
+      closedType: 'loungeRejectedUserCount',
+      requiredPermission: 'collegeUser.list',
+      icon: PeopleIcon,
+      trend: 'up',
+      percentage: '12.5%',
+      vsText: 'vs last month'
+    },
+  ];
 
-        {
-            stats: '0',
-            title: 'Alumni',
-            link: '/alumni',
-            type: 'alumUserCount',
-            pendingStats: 0,
-            rejectedStats: 0,
-            acceptedStats: 0,
-            pendingType: 'alumPendingUserCount',
-            acceptedType: 'alumAccpetedUserCount',
-            rejectedType: 'alumRejectedUserCount',
-            requiredPermission: 'collegeUser.list'
-        },
-        {
-            stats: '0',
-            title: 'Faculty',
-            link: '/faculty',
-            type: 'facultyUserCount',
-            pendingStats: 0,
-            rejectedStats: 0,
-            acceptedStats: 0,
-            pendingType: 'facultyPendingUserCount',
-            acceptedType: 'facultyAcceptedUserCount',
-            rejectedType: 'facultyRejectedUserCount',
-            requiredPermission: 'collegeUser.list'
-        },
-        {
-            stats: '0',
-            title: 'Lounge',
-            link: '/lounge',
-            type: 'loungeCount',
-            pendingStats: 0,
-            rejectedStats: 0,
-            acceptedStats: 0,
-            closedStats: 0,
-            pendingType: 'loungePendingUserCount',
-            acceptedType: 'loungeAcceptedUserCount',
-            rejectedType: 'loungeRejectedUserCount',
-            closedType: 'loungeRejectedUserCount',
-            requiredPermission: 'collegeUser.list'
-        },
-        // {
-        //     stats: '0',
-        //     title: 'App Admin',
-        //     link: '/admin',
-        //     type: 'admins',
-        //     requiredPermission: 'subadmin.list'
-        // },
-        // {
-        //     stats: '0',
-        //     title: 'Departments',
-        //     link: '/department',
-        //     type: 'departments',
-        //     requiredPermission: 'dept.list'
-        // }
-    ]
+  const orgInitialData = [
+    {
+      stats: '0',
+      title: 'Total Users',
+      link: '/organization-user',
+      type: 'orgUser',
+      pendingStats: 0,
+      rejectedStats: 0,
+      acceptedStats: 0,
+      pendingType: 'pendingUserCount',
+      acceptedType: 'acceptedUserCount',
+      rejectedType: 'rejectedUserCount',
+      requiredPermission: 'orgUser.list',
+      icon: PeopleIcon,
+      trend: 'up',
+      percentage: '12.5%',
+      vsText: 'vs last month',
+      statusItems: [
+        { label: 'Approved', value: 0, color: '#10b981' },
+        { label: 'Probing', value: 0, color: '#f59e0b' },
+        { label: 'Rejected', value: 0, color: '#ef4444' }
+      ]
+    },
+    {
+      stats: '0',
+      title: 'WhatsApp Messages',
+      link: '/whatsapp-integration',
+      type: 'whatsapp',
+      requiredPermission: 'subadmin.list',
+      icon: WhatsAppIcon,
+      trend: 'up',
+      percentage: '18.4%',
+      vsText: 'vs last month',
+      statusItems: [
+        { label: 'Read', value: 0, color: '#10b981' },
+        { label: 'Unread', value: 0, color: '#f59e0b' },
+        { label: 'Need Attention', value: 0, color: '#ef4444' }
+      ]
+    },
+    {
+      stats: '0',
+      title: 'Chapters',
+      link: '/chapter',
+      type: 'chapters',
+      requiredPermission: 'orgChapter.list',
+      icon: LocationOnIcon,
+      trend: 'up',
+      percentage: '2.1%',
+      vsText: 'vs last month',
+      statusItems: [
+        { label: 'Mumbai', value: 4, color: '#6b7280' },
+        { label: 'Delhi', value: 3, color: '#6b7280' },
+        { label: 'Bangalore', value: 3, color: '#6b7280' },
+        { label: 'Pune', value: 2, color: '#6b7280' },
+        { label: 'Chennai', value: 2, color: '#6b7280' },
+        { label: 'Hyderabad', value: 1, color: '#6b7280' }
+      ]
+    },
+    {
+      stats: '0',
+      title: 'Jobopedia',
+      link: '/carrers',
+      type: 'jobopedia',
+      requiredPermission: 'orgUser.list',
+      icon: WorkOutlineIcon,
+      trend: 'up',
+      percentage: '32.7%',
+      vsText: 'vs last month',
+      statusItems: [
+        { label: 'Active Jobs', value: 0, color: '#10b981' },
+        { label: 'Probing', value: 0, color: '#f59e0b' },
+        { label: 'Closed', value: 0, color: '#6b7280' }
+      ]
+    },
+    {
+      stats: '0',
+      title: 'Email Campaigns',
+      link: '/email-campaign',
+      type: 'email',
+      requiredPermission: 'orgUser.list',
+      icon: EmailIcon,
+      trend: 'up',
+      percentage: '15.2%',
+      vsText: 'vs last month',
+      statusItems: [
+        { label: 'Active', value: 0, color: '#10b981' },
+        { label: 'Scheduled', value: 0, color: '#f59e0b' },
+        { label: 'Draft', value: 0, color: '#6b7280' },
+        { label: 'Completed', value: 0, color: '#3b82f6' }
+      ]
+    },
+  ];
 
-    const orgInitialData = [
-        // {
-        //     stats: {
-        //         pendingUserCount: 0,
-        //         rejectedUserCount: 0,
-        //         acceptedUserCount: 0,
-        //         total: 0,
-        //     },
-        //     title: 'Organization Users',
-        //     link: '/organization-user',
-        //     type: 'orgUser',
-        //     requiredPermission: 'orgUser.list'
-        // },
-        {
-            stats: '0',
-            title: 'Users',
-            link: '/organization-user',
-            type: 'orgUser',
-            pendingStats: 0,
-            rejectedStats: 0,
-            acceptedStats: 0,
-            pendingType: 'pendingUserCount',
-            acceptedType: 'acceptedUserCount',
-            rejectedType: 'rejectedUserCount',
-            requiredPermission: 'orgUser.list'
-        },
-        {
-            stats: '0',
-            title: 'App Admin',
-            link: '/admin',
-            type: 'admins',
-            activeStats: 0,
-            inactiveStats: 0,
-            activeType: 'admins',
-            inactiveType: 'inactiveAdmins',
-            requiredPermission: 'subadmin.list'
-        },
-        {
-            stats: '0',
-            title: 'Chapter',
-            link: '/chapter',
-            type: 'chapters',
-            requiredPermission: 'orgChapter.list'
-        },
-        {
-            stats: '0',
-            title: 'Lounge',
-            link: '/lounge',
-            type: 'loungeCount',
-            pendingStats: 0,
-            rejectedStats: 0,
-            acceptedStats: 0,
-            closedStats: 0,
-            pendingType: 'loungePendingUserCount',
-            acceptedType: 'loungeAcceptedUserCount',
-            rejectedType: 'loungeRejectedUserCount',
-            closedType: 'loungeRejectedUserCount',
-            requiredPermission: 'orgUser.list'
-        },
-    ]
+    const quickActions = [
+    {
+      icon: <PersonAddIcon sx={{ fontSize: 48 }} />,
+      title: 'Add User',
+      description: 'Invite new members',
+      color: '#3B82F6',
+      link: '/add-user' // Add appropriate links
+    },
+    {
+      icon: <EmailIcon sx={{ fontSize: 48 }} />,
+      title: 'Send Campaign',
+      description: 'Create email blast',
+      color: '#10B981',
+      link: '/email-campaign'
+    },
+    {
+      icon: <EventIcon sx={{ fontSize: 48 }} />,
+      title: 'Schedule Event',
+      description: 'Plan new event',
+      color: '#F59E0B',
+      link: '/events'
+    },
+    {
+      icon: <ChatIcon sx={{ fontSize: 48 }} />,
+      title: 'Broadcast',
+      description: 'WhatsApp message',
+      color: '#8B5CF6',
+      link: '/whatsapp-integration'
+    }
+  ];
 
-    const [search, setSearch] = useState("");
-    const [totalCount, setTotalCount] = useState(0);
-    const [orgData, setOrgData] = useState([])
-    const [collegeStudentData, setCollegeStudentData] = useState([])
-    const [collegeAlumData, setCollegeAlumData] = useState([])
-    const [collegeFacultyData, setCollegeFacultyData] = useState([])
-    const [loungeData, setLoungeData] = useState([])
-    const [currentPage, setCurrentPage] = useState(1);
-    const [pageSize, setPageSize] = useState(DefaultPaginationSettings.ROWS_PER_PAGE);
-    const user = useAuth();
-    const { rolePremission } = useAuth()
-    console.log("orgId", user?.user?.orgId)
-    const userType = user?.user?.orgDetails?.orgType;
-    console.log("userType", userType)
-    const [loading, setLoading] = useState(false);
-    const [stats, setStats] = useState(userType === 'college' ? collegeInitialData : orgInitialData);
-    const [orderStats, setOrderStats] = useState([]);
-    const [upcomingEventData, setUpcomingEventData] = useState([]);
-    const hasPermission = (permission) =>
-        rolePremission?.permissions?.some((perm) => perm.permissionName === permission);
 
-    const fetchData = () => {
-        setLoading(true);
-        const apiEndpoint =
-            userType === 'college'
-                ? ApiEndPoints.DASHBOARD.collegeCount
-                : ApiEndPoints.DASHBOARD.organizationCount;
+  const [search, setSearch] = useState("");
+  const [totalCount, setTotalCount] = useState(0);
+  const [orgData, setOrgData] = useState([]);
+  const [collegeStudentData, setCollegeStudentData] = useState([]);
+  const [collegeAlumData, setCollegeAlumData] = useState([]);
+  const [collegeFacultyData, setCollegeFacultyData] = useState([]);
+  const [loungeData, setLoungeData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(DefaultPaginationSettings.ROWS_PER_PAGE);
+  const user = useAuth();
+  const { rolePremission } = useAuth();
+  const userType = user?.user?.orgDetails?.orgType;
+  const [loading, setLoading] = useState(false);
+  const [stats, setStats] = useState(userType === 'college' ? collegeInitialData : orgInitialData);
+  
+  const [upcomingEventData, setUpcomingEventData] = useState([]);
 
-        axiosInstance
-            .get(apiEndpoint)
-            .then((response) => {
-                const data = response.data.data;
-                console.log("data", data)
-                // Convert loungeCount array into an object with statuses as keys
-                const loungeStats = data.loungeCount.reduce((acc, item) => {
-                    acc[item.status] = item.count;
-                    return acc;
-                }, {});
+  const hasPermission = (permission) =>
+    rolePremission?.permissions?.some((perm) => perm.permissionName === permission);
 
-                setStats(prevStats =>
-                    prevStats.map(item => {
-                        if (item.type === 'loungeCount') {
-                            return {
-                                ...item,
-                                stats: data.totalLoungeCount || 0,
-                                pendingStats: loungeStats.pending || 0,
-                                acceptedStats: loungeStats.approved || 0,
-                                rejectedStats: loungeStats.rejected || 0,
-                                closedStats: loungeStats.closed || 0,
-                            };
-                        }
-                        if (item.type === 'admins') {
-                            return {
-                                ...item,
-                                stats: (data[item.activeType] || 0) + (data[item.inactiveType] || 0),
-                                activeStats: data[item.activeType] || 0,
-                                inactiveStats: data[item.inactiveType] || 0
-                            };
-                        }
-                        return {
-                            ...item,
-                            stats: data[item.type] || 0,
-                            pendingStats: data[item.pendingType] || 0,
-                            acceptedStats: data[item.acceptedType] || 0,
-                            rejectedStats: data[item.rejectedType] || 0,
-                        };
-                    })
-                );
-            })
-            .catch((error) => {
-                toastError(error);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-    };
+  const fetchData = () => {
+    setLoading(true);
+    const apiEndpoint =
+      userType === 'college'
+        ? ApiEndPoints.DASHBOARD.collegeCount
+        : ApiEndPoints.DASHBOARD.organizationCount;
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+    axiosInstance
+      .get(apiEndpoint)
+      .then((response) => {
+        const data = response.data.data;
 
-    const fetchUserData = async ({ currentPage, pageSize = DefaultPaginationSettings.ROWS_PER_PAGE, search }) => {
-        setLoading(true);
+        const loungeStats = data.loungeCount?.reduce((acc, item) => {
+          acc[item.status] = item.count;
+          return acc;
+        }, {});
 
-        try {
-            let responses = [];
-            let params = {
-                page: currentPage,
-                limit: pageSize,
-                search: search || null,
+        setStats(prevStats =>
+          prevStats.map(item => {
+            if (item.type === 'loungeCount') {
+              return {
+                ...item,
+                stats: data.totalLoungeCount || 0,
+                pendingStats: loungeStats?.pending || 0,
+                acceptedStats: loungeStats?.approved || 0,
+                rejectedStats: loungeStats?.rejected || 0,
+                closedStats: loungeStats?.closed || 0,
+              };
+            }
+            return {
+              ...item,
+              stats: data[item.type] || 0,
+              pendingStats: data[item.pendingType] || 0,
+              acceptedStats: data[item.acceptedType] || 0,
+              rejectedStats: data[item.rejectedType] || 0,
             };
+          })
+        );
+      })
+      .catch((error) => toastError(error))
+      .finally(() => setLoading(false));
+  };
 
-            if (userType === 'organisation') {
-                responses.push(axiosInstance.get(ApiEndPoints.COLLEGE_USER.get_college_users, { params }));
-            } else if (userType === 'college') {
-                const studentParams = { ...params, userType: 'student' };
-                const alumParams = { ...params, userType: 'alum' };
-                const facultyParams = { ...params, userType: 'faculty' };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-                responses.push(
-                    axiosInstance.get(ApiEndPoints.COLLEGE_USER.get_college_users, { params: studentParams }),
-                    axiosInstance.get(ApiEndPoints.COLLEGE_USER.get_college_users, { params: alumParams }),
-                    axiosInstance.get(ApiEndPoints.COLLEGE_USER.get_college_users, { params: facultyParams })
-                );
-            }
-
-            const results = await Promise.all(responses);
-
-            if (userType === 'organisation') {
-                setOrgData(results[0]?.data?.data?.users || []);
-            } else if (userType === 'college') {
-                setCollegeStudentData(results[0]?.data?.data?.users || []);
-                setCollegeAlumData(results[1]?.data?.data?.users || []);
-                setCollegeFacultyData(results[2]?.data?.data?.users || []);
-            }
-        } catch (error) {
-            toastError(error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        fetchUserData({ currentPage, pageSize, search });
-    }, [currentPage, pageSize, search, userType]);
-
-    const fetchLoungeData = ({
-        currentPage,
-        pageSize = DefaultPaginationSettings.ROWS_PER_PAGE,
-    }) => {
-        setLoading(true);
-        let params = {
-            page: currentPage,
-            limit: pageSize,
-            longueType: "all"
-        };
-        axiosInstance
-            .get(ApiEndPoints?.LOUNGE?.list, { params })
-            .then((response) => {
-                setLoungeData(response?.data?.data?.loungeList);
-                setTotalCount(response?.data.data.total)
-                console.log("lounge response--------------------", response?.data.data.total);
-            })
-            .catch((error) => {
-                toastError(error);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-    };
-
-    useEffect(() => {
-        fetchLoungeData({
-            currentPage: currentPage,
-            pageSize: pageSize,
-            search: search,
-        });
-    }, [currentPage, pageSize, search])
+  return (
+     <Box sx={{ p: 4, }}>
+      {/* Welcome Banner */}
+    <Box sx={{
+  mb: 6,
+  p: 6,
+  borderRadius: '12px',
+  backgroundColor: '#1e3a8a',
+  color: '#ffffff'
+}}>
+  <Typography 
+    variant="h5" 
+    fontWeight={700} 
+    sx={{ 
+      color: '#ffffff',
+    fontSize: '40px !important', // forces the size
+      lineHeight: 1.5      // optional, keeps spacing nice
+    }}
+  >
+    Welcome back, Admin
+  </Typography>
+  <Typography 
+    variant='body2'   
+    sx={{ 
+      color: '#ffffff',
+      fontSize: '18px',   // slightly larger for body text
+      mt: 2              // margin top for spacing
+    }}
+  >
+    Here's what's happening with your organization today
+  </Typography>
+</Box>
 
 
-    const fetchEventData = ({
-        search,
-        currentPage,
-        pageSize = DefaultPaginationSettings.ROWS_PER_PAGE,
-    }) => {
-        setLoading(true);
+    <Grid container spacing={4}>
+      <Grid item container xs={12} spacing={4}>
+        {stats.map((item, index) => (
+          <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
+            <Box component={Link} to={item.link} sx={{ textDecoration: 'none' }}>
+              <Card sx={{
+                bgcolor: "#FFFFFF",
+                boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.08)',
+                borderRadius: '12px',
+                border: '1px solid #f1f5f9',
+                height: '100%',
+                transition: 'all 0.3s ease',
+                '&:hover': { boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.12)' }
+              }}>
+                
+                <CardContent sx={{ p: 3, '&:last-child': { pb: 3 } }}>
+                  {/* Header with Icon */}
+                  <Box sx={{ display: "flex", alignItems: "center",   justifyContent: "space-between", mb: 3 }}>
+                    <Typography variant='h6' fontWeight={600} color={'#1e3a8a'} sx={{ fontSize: '1.1rem' }}>
+                      {item.title}
+                    </Typography>
+                    <Box sx={{
+                      width: 60,
+                      height: 60,
+                      borderRadius: '12px',
+                      backgroundColor: '#1e3a8a',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#f8fafc'
+                    }}>
+                      <item.icon sx={{ fontSize: 34 }} />
+                    </Box>
+                  </Box>
 
-        let params = {
-            page: currentPage,
-            limit: pageSize,
-            status: "upcoming"
-        };
+                  {/* Main Stats */}
+                  <Box sx={{ mb: 3,}}>
+<Box sx={{ mb: 3, display: 'flex', alignItems: 'center', gap: 5 }}>
+  {/* Stats */}
+  <Typography
+    variant='h3'
+    fontWeight={700}
+    color={'#1e3a8a'}
+    sx={{ fontSize: '2.5rem', lineHeight: 1.2 }}
+  >
+    {item.stats}
+  </Typography>
 
-        axiosInstance
-            .get(ApiEndPoints?.EVENT?.list, { params })
-            .then((response) => {
-                setUpcomingEventData(response?.data?.data?.eventList);
-                setTotalCount(response?.data.data.total);
-                console.log("Event response--------------------", response?.data.data.total);
-            })
-            .catch((error) => {
-                toastError(error);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-    };
+  {/* Trend */}
+  <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+    {item.trend === 'up' ? (
+      <TrendingUpIcon sx={{ fontSize: 20, color: '#10b981' }} />
+    ) : (
+      <TrendingDownIcon sx={{ fontSize: 20, color: '#ef4444' }} />
+    )}
+    <Typography
+      variant='body2'
+      sx={{
+        color: item.trend === 'up' ? '#10b981' : '#ef4444',
+        fontWeight: 600,
+        fontSize: '1rem'
+      }}
+    >
+      {item.percentage}
+    </Typography>
+  </Box>
+    </Box>
 
-
-    useEffect(() => {
-        fetchEventData({
-            currentPage: currentPage,
-            pageSize: pageSize,
-            search: search,
-            status: "upcoming",
-        });
-    }, [currentPage, pageSize, search]);
-
-    console.log("stats", stats)
-    return (
-        <>
-            <Grid container spacing={6}>
-                <Grid item container xs={12} spacing={6}>
-                    {stats.map((item, index) => (
-                        <Grid key={index} item xs={12} sm={6} md={6} lg={6} xl={item?.type === 'loungeCount' ? 3 : 3}>
-                            <Box
-                                component={Link}
-                                to={item.link}
-                                key={index}
-                                variant="body1"
-                                sx={{ textDecoration: 'none' }}
-                            >
-                                <Card sx={{ bgcolor: "#FFFFFF", boxShadow: '0px 0px 25px 7px rgba(0, 0, 0, 0.03)' }}>
-                                    <CardContent>
-                                        <Typography variant='fm-h6' fontWeight={600} color={'#202224'}>
-                                            {item.title}
-                                        </Typography>
-                                        {/* <Box>
-                                            {item.type === 'collegeUsers' &&
-                                                <Typography variant="body1">
-                                                    Student: {item.stats.studentUserCount} | Faculty: {item.stats.facultyUserCount} | Alumni: {item.stats.alumUserCount}
-                                                </Typography>
-                                            }
-                                        </Box> */}
-                                        {/* {item.type === 'orgUser' || item.type === 'collegeUsers' ? ( */}
-                                        <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mt: 3 }}>
-                                            <Typography variant='fm-h5' fontWeight={700} color={'#202224'}>
-                                                {item.stats}
-                                            </Typography>
-                                            <img src={icon} />
-                                        </Box>
-                                        {/* ) : null} */}
-
-                                        <Box sx={{ display: "flex", justifyContent: "space-between", mt: 5 }}>
-                                            {item.type === 'admins' ? (
-                                                <>
-                                                    <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-                                                        <img src={approved} style={{ height: "30px", width: "30px" }} />
-                                                        <Box sx={{ display: "flex", flexDirection: "column", textAlign: "center", gap: 1 }}>
-                                                            <Typography variant='fm-p4' fontWeight={500} color={'#606060'}>Active</Typography>
-                                                            <Typography variant='fm-p4' fontWeight={500} color={'#606060'}> {item?.activeStats}</Typography>
-                                                        </Box>
-                                                    </Box>
-                                                    <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-                                                        <img src={pending} style={{ height: "30px", width: "30px" }} />
-                                                        <Box sx={{ display: "flex", flexDirection: "column", textAlign: "center", gap: 1 }}>
-                                                            <Typography variant='fm-p4' fontWeight={500} color={'#606060'}>Pending</Typography>
-                                                            <Typography variant='fm-p4' fontWeight={500} color={'#606060'}>0</Typography>
-                                                        </Box>
-                                                    </Box>
-                                                    <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-                                                        <img src={rejected} style={{ height: "30px", width: "30px" }} />
-                                                        <Box sx={{ display: "flex", flexDirection: "column", textAlign: "center", gap: 1 }}>
-                                                            <Typography variant='fm-p4' fontWeight={500} color={'#606060'}>Inactive</Typography>
-                                                            <Typography variant='fm-p4' fontWeight={500} color={'#606060'}>{item?.inactiveStats}</Typography>
-                                                        </Box>
-                                                    </Box>
-                                                </>
-                                            ) : (
-                                                <>
-                                            <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-                                                <img src={approved} style={{ height: "30px", width: "30px" }} />
-                                                <Box sx={{ display: "flex", flexDirection: "column", textAlign: "center", gap: 1 }}>
-                                                    <Typography variant='fm-p4' fontWeight={500} color={'#606060'}>Approved</Typography>
-                                                    <Typography variant='fm-p4' fontWeight={500} color={'#606060'}> {item?.acceptedStats}</Typography>
-                                                </Box>
-                                            </Box>
-                                            <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-                                                <img src={pending} style={{ height: "30px", width: "30px" }} />
-                                                <Box sx={{ display: "flex", flexDirection: "column", textAlign: "center", gap: 1 }}>
-                                                    <Typography variant='fm-p4' fontWeight={500} color={'#606060'}>Pending</Typography>
-                                                    <Typography variant='fm-p4' fontWeight={500} color={'#606060'}>{item?.pendingStats}</Typography>
-                                                </Box>
-                                            </Box>
-                                            <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-                                                <img src={rejected} style={{ height: "30px", width: "30px" }} />
-                                                <Box sx={{ display: "flex", flexDirection: "column", textAlign: "center", gap: 1 }}>
-                                                    <Typography variant='fm-p4' fontWeight={500} color={'#606060'}>Rejected</Typography>
-                                                    <Typography variant='fm-p4' fontWeight={500} color={'#606060'}>{item?.rejectedStats}</Typography>
-                                                </Box>
-                                            </Box>
-                                            {item.type === 'loungeCount' && (
-                                                <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-                                                    <NotInterestedOutlinedIcon color='error' />
-                                                    <Box sx={{ display: "flex", flexDirection: "column", textAlign: "center", gap: 1 }}>
-                                                        <Typography variant='fm-p4' fontWeight={500} color={'#606060'}>Closed</Typography>
-                                                        <Typography variant='fm-p4' fontWeight={500} color={'#606060'}>{item?.closedStats}</Typography>
-                                                    </Box>
-                                                </Box>
-                                            )}
-                                                </>
-                                            )}
-                                        </Box>
+  {/* Optional: vs last month */}
+  <Typography
+    variant='body2'
+    sx={{ color: '#64748b', fontSize: '0.75rem', ml: 1 }}
+  >
+    vs last month
+  </Typography>
+</Box>
 
 
-                                    </CardContent>
-                                </Card>
+                  {/* Breakdown */}
+   
+      {/* If breakdown data is provided */}
+      {item.breakdown?.map((breakdownItem, idx) => (
+        <Box key={idx} sx={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center' 
+        }}>
+          <Typography variant='body2' sx={{ 
+            color: breakdownItem.color, 
+            fontWeight: 600, 
+            fontSize: '0.875rem' 
+          }}>
+            {breakdownItem.label}
+          </Typography>
+          <Typography variant='body2' sx={{ 
+            color: '#1e293b', 
+            fontWeight: 600, 
+            fontSize: '0.875rem' 
+          }}>
+            {breakdownItem.value}
+          </Typography>
+        </Box>
+      ))}
 
-                            </Box>
+      {/* Default breakdown if no breakdown data is provided */}
+  {!item.breakdown && (
+  <Box
+    sx={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 2,
+      justifyContent: { xs: 'center', sm: 'flex-start' },
+      alignItems: 'center',
+    }}
+  >
+    {/* Approved */}
+    <Box
+      sx={{
+        display: 'flex',
+        gap: 1.5,
+        alignItems: 'center',
+        border: '1px solid #10b948ff',
+        borderRadius: '15px',
+        padding: { xs: '6px 10px', sm: '8px 14px' },
+        backgroundColor: '#b6f7b6ff',
+        minWidth: { xs: '100px', sm: '130px' },
+        justifyContent: 'center',
+      }}
+    >
+      <Typography
+        sx={{
+          color: '#10b948ff',
+          fontWeight: 600,
+          fontSize: { xs: '0.75rem', sm: '0.875rem' },
+        }}
+      >
+        Approved
+      </Typography>
+      <Typography
+        sx={{
+          color: '#10b948ff',
+          fontWeight: 600,
+          fontSize: { xs: '0.75rem', sm: '0.875rem' },
+        }}
+      >
+        {item.acceptedStats || 1180}
+      </Typography>
+    </Box>
 
-                        </Grid>
-                    ))}
-                </Grid>
-                <Grid item xs={12} md={6} sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
-                    <LoungeCard loungeData={loungeData}
-                        onSuccess={() => {
-                            fetchLoungeData({
-                                currentPage,
-                                pageSize: DefaultPaginationSettings.ROWS_PER_PAGE,
-                                loungeType: "all",
-                            })
-                        }} />
-                    <UserApprovalCard orgData={orgData} collegeStudentData={collegeStudentData} collegeAlumData={collegeAlumData} collegeFacultyData={collegeFacultyData}
-                        onSuccess={() => {
-                            fetchData()
-                        }}
-                    />
-                </Grid>
+    {/* Pending */}
+    <Box
+      sx={{
+        display: 'flex',
+        gap: 1.5,
+        alignItems: 'center',
+        border: '1px solid #f59e0b',
+        borderRadius: '15px',
+        padding: { xs: '6px 10px', sm: '8px 14px' },
+        backgroundColor: '#fff7e6',
+        minWidth: { xs: '100px', sm: '130px' },
+        justifyContent: 'center',
+      }}
+    >
+      <Typography
+        sx={{
+          color: '#f59e0b',
+          fontWeight: 600,
+          fontSize: { xs: '0.75rem', sm: '0.875rem' },
+        }}
+      >
+        Pending
+      </Typography>
+      <Typography
+        sx={{
+          color: '#f59e0b',
+          fontWeight: 600,
+          fontSize: { xs: '0.75rem', sm: '0.875rem' },
+        }}
+      >
+        {item.pendingStats || 48}
+      </Typography>
+    </Box>
 
-                {/* Upcoming Event Card (Beside Lounge & Approval Cards) */}
-                {/* {user?.user?.orgId === 19 && ( */}
-                <Grid item xs={12} md={6} lg={6} xl={4}>
-                    <UpComingEventCard upcomingEventData={upcomingEventData} />
-                </Grid>
-                {/* )} */}
+    {/* Rejected */}
+    <Box
+      sx={{
+        display: 'flex',
+        gap: 1.5,
+        alignItems: 'center',
+        border: '1px solid #ef4444',
+        borderRadius: '15px',
+        padding: { xs: '6px 10px', sm: '8px 14px' },
+        backgroundColor: '#ffe5e5',
+        minWidth: { xs: '100px', sm: '130px' },
+        justifyContent: 'center',
+      }}
+    >
+      <Typography
+        sx={{
+          color: '#ef4444',
+          fontWeight: 600,
+          fontSize: { xs: '0.75rem', sm: '0.875rem' },
+        }}
+      >
+        Rejected
+      </Typography>
+      <Typography
+        sx={{
+          color: '#ef4444',
+          fontWeight: 600,
+          fontSize: { xs: '0.75rem', sm: '0.875rem' },
+        }}
+      >
+        {item.rejectedStats || 20}
+      </Typography>
+    </Box>
+  </Box>
+)}
 
-            </Grid>
+                </CardContent>
+              </Card>
+            </Box>
+          </Grid>
+        ))}
+      </Grid>
+
+{/* Quick Actions Section */}
+<Box sx={{ width: '100%',   bgcolor: "#FFFFFF",
+                boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.08)',
+                borderRadius: '12px',
+                border: '1px solid #f1f5f9', p: 4, mt: 6 }}
+                margin={4}>
+<Grid item xs={12}>
+  <Box sx={{ mt: 3 }}>
+    <Typography 
+      variant="h4" 
+      fontWeight={700} 
+      sx={{ 
+        color: '#1e3a8a',// deeper blue
+        mb: 4,
+        fontSize: '32px'
+      }}
+    >
+      Quick Actions
+    </Typography>
+    
+    <Grid container spacing={4}>
+      {quickActions.map((action, index) => (
+        <Grid key={index} item xs={12} sm={6} md={3}>
+          <Box 
+            component={Link} 
+            to={action.link} 
+            sx={{ textDecoration: 'none', display: 'block' }}
+          >
+            <Card sx={{
+                background: '#f0f9ff',
+              padding: '25px',
+              textAlign: 'center',
+              boxShadow: '0 10px 20px rgba(0,0,0,0.12)',
+              border: '1px solid #cbd5e1',
+              transition: 'all 0.3s ease',
+              cursor: 'pointer',
+              position: 'relative',
+              overflow: 'hidden',
+              '&:hover': {
+                transform: 'translateY(-6px)',
+              }
+            }}>
+              {/* Top accent border */}
+              <Box sx={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: '6px',
+              }} />
+              
+           {/* Icon in a square box */}
+<Box sx={{ 
+  width: '64px',
+  height: '64px',
+  backgroundColor: '#1e3a8a', // colored background
+  color: '#ffffff',              // icon color
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  margin: '0 auto 20px auto',    // center horizontally and add bottom margin
+  borderRadius: '8px',           // rounded corners (optional)
+  fontSize: '28px'               // icon size
+}}>
+  {action.icon}
+</Box>
+              
+              {/* Title */}
+              <Typography 
+                variant="h6" 
+                sx={{
+                  fontSize: '20px',
+                  fontWeight: 700,
+                  color: '#1e293b',
+                  marginBottom: '12px'
+                }}
+              >
+                {action.title}
+              </Typography>
+              
+              {/* Description */}
+              <Typography 
+                variant="body2" 
+                sx={{
+                  fontSize: '15px',
+                  color: '#475569',
+                  lineHeight: 1.6,
+                  margin: 0
+                }}
+              >
+                {action.description}
+              </Typography>
+            </Card>
+          </Box>
+        </Grid>
+      ))}
+    </Grid>
+  </Box>
+</Grid>
+</Box>
 
 
-        </>
-    );
+      {/* Other components */}
+      <Grid item xs={12} md={6} lg={6} xl={8} sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
+        <LoungeCard loungeData={loungeData} onSuccess={() => fetchData()} />
+        <UserApprovalCard
+          orgData={orgData}
+          collegeStudentData={collegeStudentData}
+          collegeAlumData={collegeAlumData}
+          collegeFacultyData={collegeFacultyData}
+          onSuccess={() => fetchData()}
+        />
+      </Grid>
+
+      <Grid item xs={12} md={6} lg={6} xl={4} sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
+        <UpComingEventCard upcomingEventData={upcomingEventData} />
+        <ActivityFeed />
+        
+      </Grid>
+
+    </Grid>
+    </Box>
+
+  );
 }
 
 export default DashboardPage;

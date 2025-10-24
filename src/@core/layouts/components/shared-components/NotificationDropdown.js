@@ -13,7 +13,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import PerfectScrollbarComponent from 'react-perfect-scrollbar';
 import CustomChip from 'src/@core/components/mui/chip';
 import CustomAvatar from 'src/@core/components/mui/avatar';
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import BellIcon from "../../../../../src/assets/images/bell.svg"
 import { axiosInstance } from 'src/network/adapter';
 import { ApiEndPoints } from 'src/network/endpoints';
@@ -23,6 +22,7 @@ import moment from 'moment';
 import axios from 'axios';
 import authConfig from '../../../../configs/auth'
 import { DefaultPaginationSettings } from 'src/constants/general.const';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 
 const Menu = styled(MuiMenu)(({ theme }) => ({
   '& .MuiMenu-paper': {
@@ -179,14 +179,16 @@ const NotificationDropdown = props => {
   console.log("notificationData", notificationData)
   return (
     <Fragment>
-      <IconButton color='inherit' aria-haspopup='true' onClick={handleDropdownOpen} aria-controls='customized-menu'>
-        <Badge badgeContent={unreadCount} color='secondary'>
-          <Box sx={{ backgroundColor: 'background.paper', borderRadius: "8px", padding: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            {/* <NotificationsNoneOutlinedIcon /> */}
-            <img src={BellIcon} style={{ width: "24px", height: "24px" }} />
-          </Box>
-        </Badge>
-      </IconButton>
+     <IconButton 
+  color='inherit' 
+  aria-haspopup='true' 
+  onClick={handleDropdownOpen} 
+  aria-controls='customized-menu'
+>
+  <Badge badgeContent={unreadCount} color='secondary'>
+    <NotificationsNoneIcon  sx={{ fontSize: '2rem'}}/>
+  </Badge>
+</IconButton>
 
       <Menu
         anchorEl={anchorEl}

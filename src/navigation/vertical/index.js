@@ -40,6 +40,7 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 const navigation = () => {
   return [
     {
@@ -197,6 +198,13 @@ const navigation = () => {
       title: 'Jobopedia',
       icon: WorkOutlineIcon,
       path: '/carrers',
+      hasChild: false,
+      // permission: 'lounge.list',
+    },
+    {
+      title: 'WhatsApp',
+      icon: WhatsAppIcon,
+      path: '/whatsapp-integration',
       hasChild: false,
       // permission: 'lounge.list',
     },

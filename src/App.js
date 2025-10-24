@@ -59,6 +59,7 @@ const Lounge = React.lazy(() => import('./pages/lounge'))
 const Mentorship = React.lazy(() => import('./pages/mentorship'))
 const MentorshipRequest = React.lazy(() => import('./pages/mentorship/mentorshipRequest'))
 const Carrers = React.lazy(() => import('./pages/carrers'))
+const WhatsAppIntegration = React.lazy(() => import('./pages/whatsapp'))
 const Galllery = React.lazy(() => import('./pages/gallery'))
 const Archives = React.lazy(() => import('./pages/gallery/archives'))
 const ServiceRequest = React.lazy(() => import('./pages/service-request'))
@@ -149,6 +150,7 @@ function App() {
               <Route path='/fund-raise' element={<FundRaise />} />
 
               <Route path='/carrers' element={<Carrers />} />
+              <Route path='/whatsapp-integration' element={<WhatsAppIntegration />} />
               <Route path='/gallery' element={<Galllery />} />
               <Route path='/archives' element={<Archives />} />
               <Route path='/service-request' element={<ServiceRequest />} />

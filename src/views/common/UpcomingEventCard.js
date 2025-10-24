@@ -65,7 +65,7 @@ const UpcomingEventCard = ({ upcomingEventData }) => {
   }
 
   return (
-    <Card variant='outlined' sx={{ minHeight: '500px', bgcolor: '#c2d9f8ff', borderRadius: '20px' }}>
+    <Card variant='outlined' sx={{ minHeight: '400px', bgcolor: '#dddde3', borderRadius: '20px', borderColor: '#1e40af' }}>
       <CardContent>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
           <Typography variant='subtitle1' color='text.secondary' gutterBottom>
@@ -79,7 +79,7 @@ const UpcomingEventCard = ({ upcomingEventData }) => {
       backgroundColor: '#1e40af',
       '&:hover': { backgroundColor: '#1e3a8a' },
       color: 'white',
-      borderRadius: '8px',   // slightly rounded corners
+borderRadius: '50%', // slightly rounded corners
       width: 36,             // square-ish size
       height: 36,
       display: 'flex',
@@ -97,7 +97,7 @@ const UpcomingEventCard = ({ upcomingEventData }) => {
       backgroundColor: '#1e40af',
       '&:hover': { backgroundColor: '#1e3a8a' },
       color: 'white',
-      borderRadius: '8px',
+      borderRadius: '50%',
       width: 36,
       height: 36,
       display: 'flex',
@@ -134,7 +134,7 @@ const UpcomingEventCard = ({ upcomingEventData }) => {
               const today = new Date()
               const isToday = day === daysShort[today.getDay()]
               return (
-                <Typography key={day} variant='fm-p1' fontWeight={isToday ? 700 : 400} color={'#272727'}>
+                <Typography key={day} variant='fm-p1' fontWeight={isToday ? 560 : 400} color={'#272727'}>
                   {day}
                 </Typography>
               )

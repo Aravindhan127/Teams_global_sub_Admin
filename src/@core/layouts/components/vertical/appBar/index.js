@@ -11,7 +11,7 @@ const AppBar = styled(MuiAppBar)(({ theme }) => ({
   transition: 'none',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: theme.spacing(0, 6),
+  padding: 0,
   // backgroundColor: 'transparent',
   background: 'linear-gradient(150deg, rgba(30, 58, 138, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%), #fff',
 

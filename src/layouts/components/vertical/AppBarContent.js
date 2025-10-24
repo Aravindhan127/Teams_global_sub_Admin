@@ -39,6 +39,7 @@ const pathNameMap = {
   '/new-campaign': 'New Campaign',
   '/campaign-management': 'Campaign Management',
   '/carrers': 'Jobopedia',
+  '/whatsapp-integration': 'WhatsApp Integration',
   '/gallery': 'Gallery',
   '/archives': 'Archives',
   '/service-request': 'Service Request',
@@ -66,31 +67,52 @@ const AppBarContent = props => {
   const { user } = useAuth()
   const location = useLocation()
   const currentPath = location.pathname
-  console.log('user', user)
 
   const getPageTitle = path => {
     const basePath = Object.keys(pathNameMap).find(key => path.startsWith(key))
     return pathNameMap[basePath] || 'Page'
   }
+
+  // Function to get current date in the format shown in the image
+  const getCurrentDate = () => {
+    const date = new Date()
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+    return date.toLocaleDateString('en-US', options)
+  }
+
   return (
-    <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', py: 2, px: 2 }}>
-      <Typography variant='fm-h7' fontWeight={700} color={'#1e3a8a'}>
-        {' '}
-        {getPageTitle(currentPath)}
-      </Typography>
-      <Box className='actions-left' sx={{ mr: 2, display: 'flex', alignItems: 'center' }}>
-        {hidden ? (
-          <IconButton color='inherit' sx={{ ml: -2.75 }} onClick={toggleNavVisibility}>
-            <MenuIcon />
-          </IconButton>
-        ) : null}
-        {/* <Autocomplete hidden={hidden} settings={settings} /> */}
+    <Box 
+      sx={{ 
+        width: '100%', 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'space-between', 
+        py: 2,
+        px: 0, // Remove horizontal padding
+        backgroundColor: 'white',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        position: 'relative',
+        zIndex: 10,
+        
+      }}
+    >
+      <Box sx={{ display: 'flex', flexDirection: 'column', pl: 3 }}> {/* Add left padding only to content */}
+        <Typography variant='h4' fontWeight={700} color={'#1e3a8a'} sx={{ lineHeight: 1.2, mb: 0.5 }}>
+          {getPageTitle(currentPath)}
+        </Typography>
+        <Typography variant='body2' color='text.secondary' sx={{ fontSize: '0.875rem' }}>
+          {getCurrentDate()}
+        </Typography>
       </Box>
-      <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center' }}>
-        {/* <LanguageDropdown settings={settings} saveSettings={saveSettings} /> */}
+      <Box className='actions-right' sx={{ display: 'flex', alignItems: 'center', gap: 1, pr: 3 }}> {/* Add right padding only to content */}
         <ModeToggler settings={settings} saveSettings={saveSettings} />
         <NotificationDropdown settings={settings} />
         <UserDropdown settings={settings} />
+        {hidden && (
+          <IconButton color='inherit' onClick={toggleNavVisibility} sx={{ ml: 1 }}>
+            <MenuIcon />
+          </IconButton>
+        )}
       </Box>
     </Box>
   )
