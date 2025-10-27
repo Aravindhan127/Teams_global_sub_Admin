@@ -20,6 +20,7 @@ import FundRaise from './pages/fund-raise'
 import MentorProfilePage from './pages/mentorship/mentorProfilePage'
 import EmailCompose from './pages/email-campaign/EmailCompose'
 import EmailComposedUsers from './pages/email-campaign/EmailComposedUsers'
+import WhatsAppBusiness from './pages/whatsapp'
 
 //website 
 const CareerCategoriesPage = React.lazy(() => import('./pages/website-content/career-section/career-categories'))
@@ -150,7 +151,7 @@ function App() {
               <Route path='/fund-raise' element={<FundRaise />} />
 
               <Route path='/carrers' element={<Carrers />} />
-              <Route path='/whatsapp-integration' element={<WhatsAppIntegration />} />
+              <Route path='/whatsapp-Business' element={<WhatsAppBusiness />} />
               <Route path='/gallery' element={<Galllery />} />
               <Route path='/archives' element={<Archives />} />
               <Route path='/service-request' element={<ServiceRequest />} />

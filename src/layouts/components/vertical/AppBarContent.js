@@ -39,7 +39,7 @@ const pathNameMap = {
   '/new-campaign': 'New Campaign',
   '/campaign-management': 'Campaign Management',
   '/carrers': 'Jobopedia',
-  '/whatsapp-integration': 'WhatsApp Integration',
+  '/whatsapp-Business': 'WhatsApp Business',
   '/gallery': 'Gallery',
   '/archives': 'Archives',
   '/service-request': 'Service Request',

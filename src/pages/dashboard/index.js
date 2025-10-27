@@ -123,7 +123,7 @@ function DashboardPage() {
     {
       stats: '0',
       title: 'WhatsApp Messages',
-      link: '/whatsapp-integration',
+      link: '/whatsapp-Business',
       type: 'whatsapp',
       requiredPermission: 'subadmin.list',
       icon: WhatsAppIcon,
@@ -217,7 +217,7 @@ function DashboardPage() {
       title: 'Broadcast',
       description: 'WhatsApp message',
       color: '#8B5CF6',
-      link: '/whatsapp-integration'
+      link: '/whatsapp-Business'
     }
   ];
 

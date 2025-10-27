@@ -204,7 +204,7 @@ const navigation = () => {
     {
       title: 'WhatsApp',
       icon: WhatsAppIcon,
-      path: '/whatsapp-integration',
+      path: '/whatsapp-Business',
       hasChild: false,
       // permission: 'lounge.list',
     },
